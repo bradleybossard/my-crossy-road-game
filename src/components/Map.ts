@@ -4,6 +4,7 @@ import type { Row } from "../types";
 import { Tree } from "./Tree";
 import { Road } from "./Road";
 import { Car } from "./Car";
+import { Truck } from "./Truck";
 
 export const metadata: Row[] = [
   {
@@ -20,6 +21,12 @@ export const metadata: Row[] = [
       { tileIndex: 5, height: 50 },
     ],
   },
+  {
+    type: "truck",
+    direction: true,
+    speed: 0,
+    vehicles: [{ initialTileIndex: -4, color: 0x00ff00 }],
+  },  
 ];
 
 export const map = new THREE.Group();
@@ -59,6 +66,22 @@ export function addRows() {
       });
 
       map.add(row);
-    }    
+    }
+
+
+    if (rowData.type === "truck") {
+      const row = Road(rowIndex);
+
+      rowData.vehicles.forEach((vehicle) => {
+        const truck = Truck(
+          vehicle.initialTileIndex,
+          rowData.direction,
+          vehicle.color
+        );
+        row.add(truck);
+      });
+
+      map.add(row);
+    }     
   });
 }
