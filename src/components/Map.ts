@@ -78,12 +78,12 @@ export function addRows() {
           rowData.direction,
           vehicle.color
         );
+        vehicle.ref = car;
         row.add(car);
       });
 
       map.add(row);
     }
-
 
     if (rowData.type === "truck") {
       const row = Road(rowIndex);
@@ -94,10 +94,11 @@ export function addRows() {
           rowData.direction,
           vehicle.color
         );
+        vehicle.ref = truck;
         row.add(truck);
       });
 
       map.add(row);
-    }     
+    }
   });
 }
