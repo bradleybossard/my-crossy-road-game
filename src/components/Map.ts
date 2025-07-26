@@ -26,15 +26,25 @@ export const metadata: Row[] = [
     direction: true,
     speed: 0,
     vehicles: [{ initialTileIndex: -4, color: 0x00ff00 }],
+  },
+  {
+    type: "forest",
+    trees: [
+      { tileIndex: -8, height: 30 },
+      { tileIndex: -3, height: 50 },
+      { tileIndex: 2, height: 30 },
+    ],
   },  
 ];
 
 export const map = new THREE.Group();
 
 export function initializeMap() {
-  const grass = Grass(0);
-  map.add(grass);
-  addRows();
+  for (let rowIndex = 0; rowIndex > -5; rowIndex--) {
+    const grass = Grass(rowIndex);
+    map.add(grass);
+    addRows();
+  }
 }
 
 
